@@ -238,9 +238,9 @@ module ActiveMerchant #:nodoc:
         when :monthly
           '1m'
         when :bimonthly
-          '3m'
-        when :bimonthly
           '2m'
+        when :quartely
+          '3m'
         when :weekly
           '1w'
         when :biweekly
