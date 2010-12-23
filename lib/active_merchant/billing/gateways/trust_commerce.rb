@@ -249,6 +249,8 @@ module ActiveMerchant #:nodoc:
           '1y'
         when :daily
           '1d'
+        else
+          options[:periodicity].to_s
         end
         
         parameters = {
