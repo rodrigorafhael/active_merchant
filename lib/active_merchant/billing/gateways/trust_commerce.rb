@@ -231,7 +231,7 @@ module ActiveMerchant #:nodoc:
       #   gateway.recurring(tendollar, creditcard, :periodicity => :weekly)
       #
       # You can optionally specify how long you want payments to continue using 'payments'
-      def recurring(money, creditcard, options = {})        
+      def recurring(money, creditcard, options = {})
         requires!(options, [:periodicity, :quartely, :bimonthly, :monthly, :biweekly, :weekly, :yearly, :daily] )
       
         cycle = case options[:periodicity]
@@ -249,22 +249,21 @@ module ActiveMerchant #:nodoc:
           '1y'
         when :daily
           '1d'
-        else
-          options[:periodicity].to_s
         end
         
         parameters = {
           :amount => amount(money),
           :cycle => cycle,
+          :start => options[:start] || nil,
           :verify => options[:verify] || 'y',
           :billingid => options[:billingid] || nil,
           :payments => options[:payments] || nil,
         }
-        
+        puts parameters
         add_creditcard(parameters, creditcard)
-                                                  
+
         commit('store', parameters)
-      end      
+      end
       
       # store() requires a TrustCommerce account that is activated for Citatdel. You can call it with a credit card and a billing ID
       # you would like to use to reference the stored credit card info for future captures. Use 'verify' to specify whether you want
