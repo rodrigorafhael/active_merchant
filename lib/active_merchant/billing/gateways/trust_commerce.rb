@@ -380,6 +380,7 @@ module ActiveMerchant #:nodoc:
         else
           puts URL
           puts parameters
+          puts "#{URL}?#{post_data(parameters)}"
           parse( ssl_post(URL, post_data(parameters)) )
         end
         
