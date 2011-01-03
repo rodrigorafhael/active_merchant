@@ -378,6 +378,8 @@ module ActiveMerchant #:nodoc:
         data = if tclink?
           TCLink.send(parameters)
         else
+          puts URL
+          puts parameters
           parse( ssl_post(URL, post_data(parameters)) )
         end
         
